@@ -68,7 +68,7 @@ The Library Management System (LMS) is a web-based application designed to facil
 For any inquiries, please contact kanojiyarohankumar@gmail.com.
 
 ## **Demo Video **
-link:https://drive.google.com/drive/folders/15GF1LcJ-gZisaQ5ym5lJNl2e0TExZ2cx.
+link:https://drive.google.com/drive/folders/15GF1LcJ-gZisaQ5ym5lJNl2e0TExZ2cx?usp=drive_link.
 
 ## **Conclusion**
 This **Library Management System** simplifies the library experience by integrating book access, seat booking, and transaction tracking in a single web-based platform. It ensures **efficient management** for both **users and administrators** while enhancing the overall library experience.
