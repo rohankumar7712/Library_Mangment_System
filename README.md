@@ -47,50 +47,6 @@ The Library Management System (LMS) is a web-based application designed to facil
 - **Database:** MySQL
 - **Authentication:** Session-based login
 
-## **Database Schema**
-### **User Table**
-```markdown
-| Column Name | Data Type | Description        |
-| ----------- | --------- | ------------------ |
-| id          | INT (PK)  | Unique User ID     |
-| name        | VARCHAR   | Full Name          |
-| email       | VARCHAR   | User Email         |
-| password    | VARCHAR   | Encrypted Password |
-| role        | ENUM      | 'user' or 'admin'  |
-```
-
-### **Books Table**
-```markdown
-| Column Name | Data Type | Description         |
-| ----------- | --------- | ------------------- |
-| book_id     | INT (PK)  | Unique Book ID      |
-| title       | VARCHAR   | Book Title          |
-| author      | VARCHAR   | Author Name         |
-| price       | DECIMAL   | Book Price          |
-| available   | BOOLEAN   | Availability Status |
-```
-
-### **Seat Booking Table**
-```markdown
-| Column Name  | Data Type | Description       |
-| ------------ | --------- | ----------------- |
-| booking_id   | INT (PK)  | Unique Booking ID |
-| user_id      | INT (FK)  | User who booked   |
-| seat_number  | VARCHAR   | Seat Identifier   |
-| start_time   | TIMESTAMP | Booking Start     |
-| end_time     | TIMESTAMP | Booking End       |
-```
-
-### **Transaction Table**
-```markdown
-| Column Name     | Data Type | Description           |
-| --------------- | --------- | --------------------- |
-| transaction_id  | INT (PK)  | Unique Transaction ID |
-| user_id        | INT (FK)  | Buyer ID              |
-| book_id        | INT (FK)  | Purchased Book        |
-| amount         | DECIMAL   | Payment Amount        |
-| date           | TIMESTAMP | Payment Date          |
-```
 
 ## **Workflow**
 1. **User Registration & Login** → Users register and log in to the system.
@@ -104,25 +60,12 @@ The Library Management System (LMS) is a web-based application designed to facil
    git clone https://github.com/your-repo/library-management-system.git
    ```
 2. Import the project into an IDE (Eclipse/IntelliJ)
-3. Configure the MySQL database:
-   - Create a database `library_db`
-   - Import `library_db.sql` (provided in the repo)
-4. Update database credentials in `dbconfig.properties`
-5. Deploy the project using Apache Tomcat
-6. Access the system at `http://localhost:8080/LMS`
-
-## **Contributing**
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Open a Pull Request
-
-## **License**
-This project is licensed under the MIT License. Feel free to modify and distribute it.
+3. Configure the MySQL database
+4. Deploy the project using Apache Tomcat
+5. Access the system at `http://localhost:8080/LMS`
 
 ## **Contact**
-For any inquiries, please contact [your-email@example.com].
+For any inquiries, please contact kanojiyarohankumar@gmail.com.
 
 ## **Conclusion**
 This **Library Management System** simplifies the library experience by integrating book access, seat booking, and transaction tracking in a single web-based platform. It ensures **efficient management** for both **users and administrators** while enhancing the overall library experience.
