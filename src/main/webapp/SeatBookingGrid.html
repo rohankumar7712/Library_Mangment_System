@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .seat {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .available { background-color: #28a745; color: white; }
+        .selected { background-color: #ffc107; color: black; }
+        .booked { background-color: #dc3545; color: white; cursor: not-allowed; }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById("bookingId").value = urlParams.get("bookingId");
+
+            const totalSeats = 63; // Number of seats
+            const seatContainer = document.getElementById("seatContainer");
+
+            fetchBookedSeats();
+
+            function fetchBookedSeats() {
+                fetch('SeatBookingGridServlet?action=getBookedSeats')
+                    .then(response => response.text())
+                    .then(data => {
+                        const bookedSeats = data.split(',').map(Number);
+                        for (let i = 1; i <= totalSeats; i++) {
+                            let seat = document.createElement("div");
+                            seat.classList.add("seat");
+                            seat.innerText = i;
+                            if (bookedSeats.includes(i)) {
+                                seat.classList.add("booked");
+                            } else {
+                                seat.classList.add("available");
+                                seat.onclick = function() { toggleSeat(seat); };
+                            }
+                            seatContainer.appendChild(seat);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching booked seats:', error));
+            }
+        });
+
+        function toggleSeat(seat) {
+            if (seat.classList.contains("available")) {
+                seat.classList.remove("available");
+                seat.classList.add("selected");
+            } else if (seat.classList.contains("selected")) {
+                seat.classList.remove("selected");
+                seat.classList.add("available");
+            }
+        }
+
+        function confirmBooking() {
+            let selectedSeats = [];
+            document.querySelectorAll(".selected").forEach(seat => selectedSeats.push(seat.innerText));
+
+            if (selectedSeats.length === 0) {
+                alert("Please select at least one seat to book.");
+                return;
+            }
+
+            let bookingId = document.getElementById("bookingId").value;
+            if (!bookingId) {
+                alert("Booking ID is missing.");
+                return;
+            }
+
+            let form = document.createElement("form");
+            form.method = "POST";
+            form.action = "SeatBookingGridServlet";
+
+            let seatInput = document.createElement("input");
+            seatInput.type = "hidden";
+            seatInput.name = "selectedSeats";
+            seatInput.value = selectedSeats.join(",");
+            form.appendChild(seatInput);
+
+            let bookingInput = document.createElement("input");
+            bookingInput.type = "hidden";
+            bookingInput.name = "bookingId";
+            bookingInput.value = bookingId;
+            form.appendChild(bookingInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</head>
+<body class="container mt-5">
+    <h2 class="text-center mb-4">Seat Selection</h2>
+    <input type="hidden" id="bookingId">
+    <div id="seatContainer" class="d-flex flex-wrap justify-content-center border p-3"></div>
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" onclick="confirmBooking()">Confirm Booking</button>
+    </div>
+</body>
+</html>

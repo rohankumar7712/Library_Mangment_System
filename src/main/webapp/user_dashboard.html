@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .dashboard-container { max-width: 1100px; margin: 50px auto; }
+        .dashboard-card {
+            padding: 30px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            text-align: center;
+            height: 220px; /* Increased height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .dashboard-card:hover { transform: scale(1.05); }
+        .dashboard-btn {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 8px;
+            margin-top: auto; /* Align button at bottom */
+            align-self: center;
+        }
+        .card-text {
+            flex-grow: 5; /* Ensures equal spacing in all cards */
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Library Dashboard</a>
+        <a href="index.html" class="btn btn-danger">Logout</a>
+    </div>
+</nav>
+
+<!-- Dashboard Cards -->
+<div class="container dashboard-container">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="card dashboard-card bg-primary text-white">
+                <h4 class="card-title">📖 Read Books</h4>
+                <p class="card-text">Explore a wide range of books and read online from our vast digital library.</p>
+                <a href="read_books.jsp" class="btn btn-light dashboard-btn">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card dashboard-card bg-success text-white">
+                <h4 class="card-title">🛒 Buy Book</h4>
+                <p class="card-text">Purchase your favorite books and expand your personal collection.</p>
+                <a href="BookList.jsp" class="btn btn-light dashboard-btn">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card dashboard-card bg-warning text-dark">
+                <h4 class="card-title">📜 Book History</h4>
+                <p class="card-text">Check your previously read and purchased books anytime.</p>
+                <a href="BuyBookHistoryServlet" class="btn btn-dark dashboard-btn">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card dashboard-card bg-info text-dark">
+                <h4 class="card-title">🎟️ Seat Booking</h4>
+                <p class="card-text">Reserve a seat in the library for a focused and distraction-free study session.</p>
+                <a href="UserInfo.html" class="btn btn-dark dashboard-btn">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card dashboard-card bg-danger text-white">
+                <h4 class="card-title">📅 Seat History</h4>
+                <p class="card-text">View your past seat bookings and manage upcoming reservations.</p>
+                <a href="UserBookingHistory.jsp" class="btn btn-light dashboard-btn">View</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card dashboard-card bg-secondary text-white">
+                <h4 class="card-title">📚 Read Booking History</h4>
+                <p class="card-text">Track your past reading sessions and re-engage with books you enjoyed.</p>
+                <a href="reading_history.jsp" class="btn btn-light dashboard-btn">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
